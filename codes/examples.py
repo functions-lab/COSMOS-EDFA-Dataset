@@ -1,7 +1,7 @@
 # example code for visualization the EDFA gain spectrum dataset
 from .libs.edfa_visual_libs import *
 # basic configuration
-DATASET_PATH = "../dataset"
+DATASET_PATH = get_path_to_file(["..","dataset"])
 CHANNEL_TYPES = ["fix","extraLow","random","extraRandom"]
 EDFA_TYPES_TO_GAINS ={
     "booster":["15dB","18dB","21dB"],
@@ -11,6 +11,12 @@ EDFA_TYPES_TO_GAINS ={
 ####################
 # SELECT FILES
 ####################
+
+# add files paths both works for linux and windows
+# input: [base_folder,subfolder1,subfolder2,subfolder3,target_file]
+# output:"base_folder/subfolder1/.../target_file"
+def get_path_to_file(folderList):
+    return os.path.join(*folderList)
 
 # return edfaType ("booster"), gain ("18dB"), channelType ("extraRandom")
 def select_certain_json_file():
@@ -32,6 +38,9 @@ def select_certain_json_file():
     channelType = CHANNEL_TYPES[channelTypesIndx]
     return edfaType,gain,channelType
 
+def generate_json_file_path(edfaType,gain,channelType):
+    return get_path_to_file([DATASET_PATH,edfaType,gain,channelType])
+
 # selec the file from this folder 
 def select_json_files(dataPath):
     hasFolder, subFilePath = select_current_folder(dataPath)
@@ -46,11 +55,10 @@ def select_current_folder(dataPath):
             print(str(filenameIndx)+":"+subfolers[filenameIndx])
         key = int(input("type the indx of file/folder want to plot:")) - int('0')
         fileName = subfolers[key]
-        dataPath = dataPath+fileName + "/"
-        if os.path.isdir(dataPath): return True, dataPath + "/"
-        else: return False, dataPath
-    else:
-        return False, dataPath
+        dataPath = get_path_to_file([dataPath,fileName])
+        if os.path.isdir(dataPath): 
+            return True, dataPath
+    return False, dataPath
 
 ####################
 # SHOW FOLDER STRUCTURE
