@@ -1,25 +1,9 @@
 # example code for visualization the EDFA gain spectrum dataset
 from .libs.edfa_visual_libs import *
-import pprint
-# basic configuration
-colorLabel = ['red','green','blue','black','yellow','olive','brown','purple']
-DATASET_PATH = get_path_to_file(["..","dataset"])
-CHANNEL_TYPES = ["fix","extraLow","random","extraRandom"]
-EDFA_TYPES_TO_GAINS ={
-    "booster":["15dB","18dB","21dB"],
-    "preamp":["15dB","18dB","21dB","24dB","27dB"]
-}
-pp = pprint.PrettyPrinter(indent=4)
 
 ####################
 # SELECT FILES
 ####################
-
-# add files paths both works for linux and windows
-# input: [base_folder,subfolder1,subfolder2,subfolder3,target_file]
-# output:"base_folder/subfolder1/.../target_file"
-def get_path_to_file(folderList):
-    return os.path.join(*folderList)
 
 # return edfaType ("booster"), gain ("18dB"), channelType ("extraRandom")
 def select_certain_json_file():
@@ -46,29 +30,24 @@ def generate_json_file_path(edfaType,gain,channelType,roadmName):
     return matchFile("*"+roadmName+"*.json",folderName)
 
 # selec the file from this folder 
-def select_json_files(dataPath):
-    hasFolder, subFilePath = select_current_folder(dataPath)
-    while(hasFolder):
-        hasFolder, subFilePath = select_current_folder(subFilePath)
-    return subFilePath
 
-def select_current_folder(dataPath):
-    if os.path.isdir(dataPath):
-        subfolers = os.listdir(dataPath)
-        for filenameIndx in range(len(subfolers)):
-            print(str(filenameIndx)+":"+subfolers[filenameIndx])
-        key = int(input("type the indx of file/folder want to plot:")) - int('0')
-        fileName = subfolers[key]
-        dataPath = get_path_to_file([dataPath,fileName])
-        if os.path.isdir(dataPath): 
-            return True, dataPath
-    return False, dataPath
+# def select_json_files(dataPath):
+#     hasFolder, subFilePath = select_current_folder(dataPath)
+#     while(hasFolder):
+#         hasFolder, subFilePath = select_current_folder(subFilePath)
+#     return subFilePath
 
-# import from json file 
-def import_EDFA_files(jsonFile):
-    with open(jsonFile, "r") as read_file:
-        data = json.load(read_file)
-    return data
+# def select_current_folder(dataPath):
+#     if os.path.isdir(dataPath):
+#         subfolers = os.listdir(dataPath)
+#         for filenameIndx in range(len(subfolers)):
+#             print(str(filenameIndx)+":"+subfolers[filenameIndx])
+#         key = int(input("type the indx of file/folder want to plot:")) - int('0')
+#         fileName = subfolers[key]
+#         dataPath = get_path_to_file([dataPath,fileName])
+#         if os.path.isdir(dataPath): 
+#             return True, dataPath
+#     return False, dataPath
 
 ####################
 # Print/plot arbitrary Json data
@@ -78,7 +57,7 @@ def plot_json_one_element(edfaType,gain,channelType,roadmName,subChannelName,spe
     # edfaType,gain,channelType = select_certain_json_file()
     # edfaType,gain,channelType = "booster","18dB","fix"
     jsonPath = generate_json_file_path(edfaType,gain,channelType,roadmName)
-    data = import_EDFA_files(jsonPath)
+    data = getJsonData(jsonPath)
     data_dict = get_json_one_item(data,subChannelName,spectrumName)
     plot_one_dict_to_bar(data_dict)
     pp.pprint(data_dict)
@@ -86,7 +65,7 @@ def plot_json_one_element(edfaType,gain,channelType,roadmName,subChannelName,spe
 # input data dict
 # output one 
 def get_json_one_item(data,subChannelName,spectrumName):
-    for metadata in data["measurement_data"]:
+    for metadata in data:
         OpenChannelType = metadata['open_channel_type'] 
         if OpenChannelType == subChannelName:
             return metadata[spectrumName]
@@ -152,45 +131,53 @@ def plot_one_json_file_gain_spectrum(edfaType,gain,channelType,roadmName):
             title = 'random channel #='+ OpenChannelRange + ' gain profile compare'
             EDFAdata = calculateGainDict(OpenData,edfaType,calculateRipple=True)
             plotGainData(0,EDFAdata,title,alphaNum=0.2,saveName=saveName) 
-    
 
 
 ####################
 # Convert Json raw data to ML readable data file
 ####################
 
-
+from .libs.edfa_feature_extraction_libs import *
 
 
 ####################
-# HELPER PLOTS
+# PAPER PLOTS
 ####################
 
-
-# bar plot helper function -> plot one list 
-
+# ignore for now ... 
 
 
-# import from outside one file
-# paper line plot 1
-# def paper_plot_1(): pass
+############################
+# USER OWN HELPER FUNCTION
+############################
 
-# paper line plot 2
-
-# paper overview heatmap plot
+# put your self defined function here 
 
 
-# paper power range 
-
+####################
+# MAIN
+####################
 
 def __init__(void):
     ###################
     if True:
-        plot_one_json_file_gain_spectrum("booster","18dB","fix","rdm1-co1")
+        edfaType,gain,channelType,roadmName = "booster","18dB","fix","rdm1-co1"
+        plot_one_json_file_gain_spectrum(edfaType,gain,channelType,roadmName)
     ###################
     if True:
         # get from website introduction or README / 
+        edfaType,gain,channelType,roadmName = "booster","18dB","fix","rdm1-co1"
         # edfaType,gain,channelType,roadmName,subChannelName,spectrumName
-        plot_json_one_element("booster","18dB","fix","rdm1-co1","fully_loaded_channel_wdm","roadm_flatten_preamp_input_power_spectra")
+        subChannelName,spectrumName = "fully_loaded_channel_wdm","roadm_flatten_preamp_input_power_spectra"
+        plot_json_one_element(edfaType,gain,channelType,roadmName,subChannelName,spectrumName)
     
+    if True:
+        folderList = ['fix', 'random', 'extraRandom', 'extraLow']
+        edfaTypes = ["booster"] # ["booster","preamp"]
+        fileList = ['rdm1-co1'] # ['rdm1-co1', 'rdm2-co1', 'rdm3-co1', 'rdm4-co1',
+                                # 'rdm5-co1', 'rdm6-co1', 'rdm1-lg1', 'rdm2-lg1']
+        gainList = ["15dB","18dB","21dB"]
+
+        generate_ML_features(edfaTypes,gainList,fileList,folderList)
+        # check the generated csv files at "misc/ML_features" folder
 
