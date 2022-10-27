@@ -6,7 +6,7 @@ from libs.edfa_examples import *
 ####################
 def run_examples(option):
     if option == 1:
-        edfaType,gain,channelType,roadmName = "booster","18dB","random","rdm5-co1"
+        edfaType,gain,channelType,roadmName = "booster","18dB","random","rdm1-co1"
         plot_one_json_file_gain_spectrum(edfaType,gain,channelType,roadmName)
 
     elif option == 2:
@@ -26,6 +26,7 @@ def run_examples(option):
         # check the generated csv files at "misc/ML_features" folder
 
     else:
+        # not implemented but feel free to implemented by yourself : )
         raise Exception("not implemented.")
 
 # run the examples
