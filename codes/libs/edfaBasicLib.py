@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 
 # basic configuration
 colorLabel = ['red','green','blue','black','yellow','olive','brown','purple']
-DATASET_PATH = get_path_to_file(["..","dataset"])
+
 CHANNEL_TYPES = ["fix","extraLow","random","extraRandom"]
 EDFA_TYPES_TO_GAINS ={
     "booster":["15dB","18dB","21dB"],
@@ -43,3 +43,16 @@ def getJsonData(fileName):
     with open(fileName, "r") as read_file:
         data = json.load(read_file)
     return data['measurement_data']    
+
+def matchFile(pattern, foler):
+    # match one file in the folder
+    # example usage:
+    # result = matchFile('*rdm1-co1*.json', '.../15dB/extraRandom/')
+    # result is the full path 
+    for file in os.listdir(foler):
+        if fnmatch.fnmatch(file, pattern):
+            return os.path.join(foler, file)
+
+
+# other configuration
+DATASET_PATH = get_path_to_file(["..","dataset"])

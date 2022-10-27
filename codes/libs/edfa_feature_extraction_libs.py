@@ -132,13 +132,15 @@ def generate_ML_features(edfaTypes,gainList,fileList,folderList):
 
     for fileName in fileList:
         for edfaType in edfaTypes: # 
-            print(fileName)
+            print("processing: "+fileName)
             trainExtractedFeature = pd.DataFrame()
             testRandomExtractedFeature = pd.DataFrame()
             testGoalpostExtractedFeature = pd.DataFrame()
             augmExtractedFeature = pd.DataFrame()
             for channelType in folderList:
+                print("processing: "+channelType)
                 for gain in gainList:
+                    print("processing: "+gain)
                     filePath = get_path_to_file([DATASET_PATH,edfaType,gain,channelType])
                     fileName_booster = matchFile('*'+fileName+'*.json', filePath)
 
@@ -182,6 +184,11 @@ def generate_ML_features(edfaTypes,gainList,fileList,folderList):
 
                     else:
                         print("haven't implemented yet!")
+            
+            # if the folder not exist
+            modelSubPath = get_path_to_file([output_prepath,edfaType])
+            if not os.path.exists(modelSubPath):
+                os.mkdir(modelSubPath)
             
             # write the output to CSV file
             output_path = get_path_to_file([output_prepath,edfaType,fileName])

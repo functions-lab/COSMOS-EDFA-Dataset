@@ -10,15 +10,6 @@ Lumentum_ocm_threshold = {
     "mux in" : (-28.1,0.3)
 }
 
-def matchFile(pattern, foler):
-    # match one file in the folder
-    # example usage:
-    # result = matchFile('*rdm1-co1*.json', '.../benchmark/extraRandom/')
-    # result is the full path 
-    for file in os.listdir(foler):
-        if fnmatch.fnmatch(file, pattern):
-            return os.path.join(foler, file)
-
 def returnValidOCMListdata(dataset,key):
     returnData = []
     for data in dataset:
@@ -236,7 +227,7 @@ def plotGainDataNormalize(indxForFigure,dataDict,title,
     plt.ylabel('Gain ripple (dB)')
     plt.title(title)
     if saveName:
-        plt.savefig(saveName, dpi=600)
+        plt.savefig(saveName, dpi=480)
 
 def ChannelToWavelength(indices):
     c_speed = 299792458 # 3e8
