@@ -1,3 +1,4 @@
+
 # COSMOS EDFA Dataset
 
 COSMOS _Erbium-Doped Fiber Amplifier_ (_EDFA_) Dataset consists of the gain spectrum measurements using the built-in photodiodes (PDs) and optical channel monitors (OCMs) for 16 EDFAs within 8 commercial grade Lumentum ROADM-20 units deployed in the PAWR COSMOS testbed. The dataset includes measurements collected from 8 booster EDFAs, each with 3 gain settings, and 8 pre-amplifier EDFAs, each with 5 gain settings. For each EDFA at a given gain setting, 3,168 gain spectrum measurements are collected with a set of diverse channel loading configurations and varying input power levels. 
@@ -280,7 +281,7 @@ The example code can be found at `./codes/examples.py` . It supports three diffe
     
 2. Print/plot arbitrary Json data 
 -- Function explanation: plot any spectrum collected from any json file.  
--- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](#other-keys-in-booster-json-file) and `spectrumName` can be arbitrary [*spectrum* element](#measurement_data)
+-- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](#other-keys-in-booster-json-file) and `spectrumName` can be arbitrary [*spectrum*](#measurement_data)
 
  3. Convert Json raw data to ML readable data file
 -- Function explanation: convert selected json files into training/testing/augment dataset in *CSV* format. It consists of the EDFA gain setting, total input/output power, input power spectrum,  channel loading configuration, and the EDFA gain spectrum. 
