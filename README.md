@@ -254,7 +254,7 @@ We put some of the important keys in the diagram:
 
 #### Other keys in preamp *JSON* file
 
-- All the keys in preamp *JSON* file is similar to [booster *JSON* file](Other-keys-in-booster-*JSON*-file)
+- All the keys in preamp *JSON* file is similar to [booster *JSON* file](other-keys-in-booster-json-file)
 
 
 
@@ -277,7 +277,7 @@ The example code can be found at `./codes/examples.py` . It supports three diffe
     
 2. Print/plot arbitrary Json data 
 -- Function explanation: plot any spectrum collected from any json file.  
--- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](Other-keys-in-booster-*JSON*-file) and `spectrumName` can be arbitrary [*spectrum* element](measurement-data)
+-- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](other-keys-in-booster-json-file) and `spectrumName` can be arbitrary [*spectrum* element](measurement_data)
 
  3. Convert Json raw data to ML readable data file
 -- Function explanation: convert selected json files into training/testing/augment dataset in *CSV* format. It consists of the EDFA gain setting, total input/output power, input power spectrum,  channel loading configuration, and the EDFA gain spectrum. 
