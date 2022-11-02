@@ -3,12 +3,11 @@
 COSMOS _Erbium-Doped Fiber Amplifier_ (_EDFA_) Dataset consists of the gain spectrum measurements using the built-in photodiodes (PDs) and optical channel monitors (OCMs) for 16 EDFAs within 8 commercial grade Lumentum ROADM-20 units deployed in the PAWR COSMOS testbed. The dataset includes measurements collected from 8 booster EDFAs, each with 3 gain settings, and 8 pre-amplifier EDFAs, each with 5 gain settings. For each EDFA at a given gain setting, 3,168 gain spectrum measurements are collected with a set of diverse channel loading configurations and varying input power levels. 
 
 ## Terms explanations
-- Lumentum: 
+- Lumentum
 - EDFA
 - ROADM
 - WSS
 - Calient space switch
-- 
 - preamp:
 - DUT
 - MUX/DEMUX
@@ -26,7 +25,7 @@ With a DUT booster EDF0A, the output of the comb source is connected to an add p
 The wavelength dependent gain spectrum of each EDFA, denoted by $g(\lambda_i)$, can be characterized by its input power spectrum, $S_{\textrm{in}}(\lambda_i)$, and output power spectrum, $S_{\textrm{out}}(\lambda_i)$, i.e., $g(\lambda_i) = S_{\textrm{out}}(\lambda_i)-S_{\textrm{in}}(\lambda_i), \forall i = 1,2,\dots,95$, where $\lambda_1 = 1529.16$ nm (196.050 THz) and $\lambda_{95} = 1566.72$ nm (191.350 THz).
 
 # Channel Loading Configurations
-![Channel loading!](./misc/md_support_materials/figures/channel_loading.png)
+![Channel loading](./misc/md_support_materials/figures/channel_loading.png)
 For each EDFA, $g(\lambda_i)$ can vary significantly with different channel loading configurations. However, it is impossible to measure all $2^{95}$ configurations with 95 $\times$ 50 GHz channels where each channel can be switched ON/OFF. To address this challenge, we carefully design 5 sets of diverse channel loading configurations and using four *JSON* files to store the measurement results of the collected data:
 * **Fixed Baseline** includes the fully loaded (WDM) channel configuration ($n=95$), 4 half loaded (lower/upper/even/odd) channel configurations ($n \in \{47,48\}$), and 7 selected single/double (adjacent) channel configurations. These channel loading stored in the *fix* dataset folder together with *Fixed Goalpost* mentioned below.
 * **Fixed Goalpost** focuses on two sets of consecutive channels located in 3 channel groups (with short/medium/long wavelength), and includes 15 balanced and 12 imbalanced goalpost channel configurations with $n \in \{2,4,8,16,32\}$ and $n \in \{9,18\}$, respectively. These channel loading stored in the *fix* dataset folder together with *Fixed Baseline*.
@@ -55,7 +54,7 @@ The whole dataset folder structure is shown as following:
  ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm1-lg1.xxx.json  
  ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm2-co1.xxx.json  
  ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm2-lg1.xxx.json  
- ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm3-co1.bxxx.json  
+ ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm3-co1.xxx.json  
  ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm4-co1.xxx.json  
  ┃ ┃ ┃ ┃ ┣ 📜edfa_meas_rdm5-co1.xxx.json  
  ┃ ┃ ┃ ┃ ┗ 📜edfa_meas_rdm6-co1.xxx.json  
