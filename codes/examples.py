@@ -13,7 +13,7 @@ def run_examples(option):
         # get from website introduction or README / 
         edfaType,gain,channelType,roadmName = "preamp","18dB","fix","rdm1-co1"
         # edfaType,gain,channelType,roadmName,subChannelName,spectrumName
-        subChannelName,spectrumName = "fully_loaded_channel_wdm","roadm_flatten_preamp_input_power_spectra"
+        subChannelName,spectrumName = "fully_loaded_channel_wdm","roadm_dut_preamp_input_power_spectra"
         plot_json_one_element(edfaType,gain,channelType,roadmName,subChannelName,spectrumName)
 
     elif option == 3:
