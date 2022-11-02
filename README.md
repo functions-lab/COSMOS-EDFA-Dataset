@@ -25,7 +25,7 @@ With a DUT booster EDF0A, the output of the comb source is connected to an add p
 The wavelength dependent gain spectrum of each EDFA, denoted by $g(\lambda_i)$, can be characterized by its input power spectrum, $S_{\textrm{in}}(\lambda_i)$, and output power spectrum, $S_{\textrm{out}}(\lambda_i)$, i.e., $g(\lambda_i) = S_{\textrm{out}}(\lambda_i)-S_{\textrm{in}}(\lambda_i), \forall i = 1,2,\dots,95$, where $\lambda_1 = 1529.16$ nm (196.050 THz) and $\lambda_{95} = 1566.72$ nm (191.350 THz).
 
 # Channel Loading Configurations
-![Channel loading](./misc/md_support_materials/figures/channel_loading.png)
+![Channel loading!](./misc/md_support_materials/figures/channel_loading.png)
 For each EDFA, $g(\lambda_i)$ can vary significantly with different channel loading configurations. However, it is impossible to measure all $2^{95}$ configurations with 95 $\times$ 50 GHz channels where each channel can be switched ON/OFF. To address this challenge, we carefully design 5 sets of diverse channel loading configurations and using four *JSON* files to store the measurement results of the collected data:
 * **Fixed Baseline** includes the fully loaded (WDM) channel configuration ($n=95$), 4 half loaded (lower/upper/even/odd) channel configurations ($n \in \{47,48\}$), and 7 selected single/double (adjacent) channel configurations. These channel loading stored in the *fix* dataset folder together with *Fixed Goalpost* mentioned below.
 * **Fixed Goalpost** focuses on two sets of consecutive channels located in 3 channel groups (with short/medium/long wavelength), and includes 15 balanced and 12 imbalanced goalpost channel configurations with $n \in \{2,4,8,16,32\}$ and $n \in \{9,18\}$, respectively. These channel loading stored in the *fix* dataset folder together with *Fixed Baseline*.
@@ -277,7 +277,7 @@ The example code can be found at `./codes/examples.py` . It supports three diffe
     
 2. Print/plot arbitrary Json data 
 -- Function explanation: plot any spectrum collected from any json file.  
--- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](Other-keys-in-booster-*JSON*-file) and `spectrumName` can be arbitrary [*spectrum* element](measurement_data)
+-- How to run the code: `run_examples(option=2)` with parameters selected in the codes. Specifically, `subChannelName` can be arbitrary value found from [`open_channel_type`](Other-keys-in-booster-*JSON*-file) and `spectrumName` can be arbitrary [*spectrum* element](measurement-data)
 
  3. Convert Json raw data to ML readable data file
 -- Function explanation: convert selected json files into training/testing/augment dataset in *CSV* format. It consists of the EDFA gain setting, total input/output power, input power spectrum,  channel loading configuration, and the EDFA gain spectrum. 
