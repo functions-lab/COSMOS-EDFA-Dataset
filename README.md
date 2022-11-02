@@ -41,7 +41,7 @@ The whole dataset folder structure is shown as following:
 
 ```
 📦COSMOS-EDFA-Dataset 
- ┣ 📂codes  
+ ┣ 📂code  
  ┃ ┣ 📂libs  
  ┃ ┃ ┣ 📜edfaExternalLibs.py  
  ┃ ┃ ┗ 📜edfa_visual_libs.py  
