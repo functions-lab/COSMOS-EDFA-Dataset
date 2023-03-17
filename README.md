@@ -18,6 +18,16 @@ COSMOS _Erbium-Doped Fiber Amplifier_ (_EDFA_) Dataset consists of the gain spec
 - OCM/PD: Optical Channel Monitor / PhotoDiode.
 - JSON: a standard text-based format for representing structured data based on JavaScript object syntax. This format is used for storing the EDFA measurement data.
 
+# Updates for dataset and COSMOS testbed
+- [Dataset] Mar. 2023: We found the previous rdm5-co1 and rdm6-co1 are swapped on the AoA switch side (the mac addresses stored in rdm5-co1 and rdm6-co1 are swapped). All the labels for rdm5-co1 and rdm6-co1 are changed to the most up-to-date version. No further action is needed if using the dataset after Mar. 17 2023.
+
+- [COSMOS] Jan. 2023: Several connections are changed due to experiment needed.
+	- 32AoA circuit #1 at Client 4.6.1 -> reconnected to Dicon port 15
+	- 32AoA circuit #2 at Client 4.6.2 -> reconnected to Dicon port 16
+	- CCNY circuit #1 at Client 4.6.3 -> reconnected to Dicon port 14
+	- rdm1-co1 line port at Client 1.1.8 -> reconnected to Dicon port 7
+	- rdm2-co1 line port at Client 1.4.8 -> reconnected to Dicon port 8
+
 # Measurement pipeline
 ![Measurement pipeline!](./misc/md_support_materials/figures/measurement_setup.png)
 The figure shows the block diagram of the block diagram of the Lumentum ROADM-20 unit and the measurement setup of a device under test (DUT) EDFA. Each ROADM unit consists of one MUX wavelength selective switch (WSS), one DEMUX  WSS, one booster EDFA, and one pre-amplifier EDFA, and is equipped with total power and channel power monitoring capabilities using the built-in PDs and OCMs with a power measurement resolution of 0.01 dB and 0.1 dB, respectively.  We use a comb source to generate a set of 95×50 GHz WDM channels in the C-band.
