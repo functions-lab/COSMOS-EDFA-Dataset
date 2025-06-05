@@ -9,6 +9,7 @@ import scipy.stats as stats
 import json,copy
 from collections import defaultdict
 import statistics
+import shutil
 
 # MISC
 import math,os,shutil,fnmatch

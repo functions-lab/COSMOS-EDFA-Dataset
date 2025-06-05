@@ -143,6 +143,11 @@ def plot_one_json_file_gain_spectrum(edfaType,gain,channelType,roadmName):
 
 from .edfa_feature_extraction_libs import *
 
+def remove_generated_files():
+    shutil.rmtree('../misc/ML_features')
+    os.makedirs('../misc/ML_features')
+    shutil.rmtree('../misc/figures')
+    os.makedirs('../misc/figures')
 
 ####################
 # PAPER PLOTS
